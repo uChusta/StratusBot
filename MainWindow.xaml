@@ -5,10 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StratusBot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="StratusBot" Height="600" Width="450"
+        MinWidth="350" MinHeight="500"
+        Background="LightSteelBlue">
     <Grid>
         <!-- Row 0: Header with bot name and ASCII art -->
         <!-- Row 1: ScrollViewer containing chat display TextBlock -->
         <!-- Row 2: Input row with TextBox and Send Button -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="*"/>
+            <!-- Chat display -->
+            <RowDefinition Height="Auto"/>
+            <!-- Input row -->
+        </Grid.RowDefinitions>
+        
+            <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="10" HorizontalAlignment="Center">
+            <TextBlock Text="StratusBot" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Center"/>
+            <TextBlock Text="ASCII Art Here" FontFamily="Consolas" FontSize="14" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Chat Display -->
+        <Border Grid.Row="1" Margin="10" Background="LightCyan" BorderBrush="LightGray" BorderThickness="1" Padding="5">
+            <ScrollViewer Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="ChatDisplay" TextWrapping="Wrap" FontSize="14" FontFamily="Segoe UI"/>
+            </ScrollViewer>
+        </Border>
+        
+        <!-- Input Row -->
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Input Row -->
+            <TextBox x:Name="InputTextBox" Grid.Column="0" Margin="0,0,5,0" FontSize="14"/>
+            <!-- Send Button -->
+            <Button Name="SendButton" Content="Send"  Width="75" Height="35" Grid.Column="1" Padding="10,5" Click="SendButton_Click"/>
+
+
+        </Grid>
     </Grid>
 </Window>
