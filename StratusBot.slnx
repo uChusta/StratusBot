@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="KeywordResponder.cs" />
+    <File Path="MemoryStore.cs" />
+    <File Path="Sentiment.cs" />
+  </Folder>
+  <Project Path="StratusBot.csproj" />
+</Solution>
