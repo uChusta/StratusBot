@@ -21,5 +21,21 @@ namespace StratusBot
         {
             InitializeComponent();
         }
+
+        private void  UpdateUserStatus(bool isOnline)
+        {
+            if (isOnline)
+            {
+                StatusIndicator.Fill = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                StatusIndicator.Fill = new SolidColorBrush(Colors.Red);
+            }
+        }
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

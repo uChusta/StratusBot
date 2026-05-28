@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StratusBot"
         mc:Ignorable="d"
-        Title="StratusBot" Height="600" Width="450"
+        Title="StratusBot" Height="600" Width="800"
         MinWidth="350" MinHeight="500"
         Background="LightSteelBlue">
     <Grid>
@@ -25,6 +25,16 @@
         <StackPanel Grid.Row="0" Margin="10" HorizontalAlignment="Center">
             <TextBlock Text="StratusBot" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Center"/>
             <TextBlock Text="ASCII Art Here" FontFamily="Consolas" FontSize="14" HorizontalAlignment="Center"/>
+        </StackPanel>
+        
+        <!-- User Display -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,5,5,0">
+            <TextBlock Name="UserDisplay" Text="User: John Doe" FontSize="14" FontWeight="Bold" Margin="0,0,8,0"
+                    VerticalAlignment="Center"/>
+            <Ellipse Name="StatusIndicator" Width="10" Height="10" Fill="Green" Margin="0,0,8,0" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Chat Display -->
