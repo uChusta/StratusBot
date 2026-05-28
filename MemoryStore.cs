@@ -1,8 +1,9 @@
 ﻿using System;
 
-public class Class1
+public class MemoryStore
 {
-	public Class1()
-	{
-	}
+    public string UserName { get; set; }
+    public string FavouriteTopic { get; set; }
+
 }
+

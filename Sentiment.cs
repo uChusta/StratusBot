@@ -1,8 +1,7 @@
 ﻿using System;
 
-public class Class1
+public enum Sentiment { Neutral, Worried, Curious, Frustrated, Happy }
+public class SentimentDetector
 {
-	public Class1()
-	{
-	}
+
 }

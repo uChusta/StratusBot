@@ -16,6 +16,7 @@ namespace StratusBot
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ChatBot chatBot;   
         public MainWindow()
         {
             InitializeComponent();

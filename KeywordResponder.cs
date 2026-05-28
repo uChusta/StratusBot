@@ -1,8 +1,12 @@
 ﻿using System;
 
-public class Class1
+public class KeywordResponder
 {
-	public Class1()
-	{
-	}
+    private Dictionary<string, List<string>> _responses;
+    private Random _random = new Random();
+
+
+    key,
+
+response)
 }
