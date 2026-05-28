@@ -33,9 +33,18 @@ namespace StratusBot
                 StatusIndicator.Fill = new SolidColorBrush(Colors.Red);
             }
         }
+
+        SendMessage()
+        {
+            //read the input from the UI and call the chat bot to send the message and display the response in the UI
+           
+
+        }
+
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-
+            // Call the SendMessage method when the send button is clicked
+            SendMessage();
         }
     }
 }
