@@ -32,6 +32,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Margin="0,5,5,0">
+            <!--name must change to reflect actual user -->
             <TextBlock Name="UserDisplay" Text="User: John Doe" FontSize="14" FontWeight="Bold" Margin="0,0,8,0"
                     VerticalAlignment="Center"/>
             <Ellipse Name="StatusIndicator" Width="10" Height="10" Fill="Green" Margin="0,0,8,0" VerticalAlignment="Center"/>
@@ -40,7 +41,9 @@
         <!-- Chat Display -->
         <Border Grid.Row="1" Margin="10" Background="LightCyan" BorderBrush="LightGray" BorderThickness="1" Padding="5">
             <ScrollViewer Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="ChatDisplay" TextWrapping="Wrap" FontSize="14" FontFamily="Segoe UI"/>
+                <StackPanel Name="ChatDisplay" Orientation="Horizontal">
+                    <!-- Chat messages will be added here dynamically -->
+                </StackPanel>
             </ScrollViewer>
         </Border>
         

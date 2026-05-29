@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public enum Sentiment { Neutral, Worried, Curious, Frustrated, Happy }
 public class SentimentDetector
@@ -6,7 +7,7 @@ public class SentimentDetector
     // dictionary mapping Sentiment -> list of trigger words
     private Dictionary<Sentiment, List<string>> _sentiment;
 
-    SentimentDetector()
+    public SentimentDetector()
     {
         // initialize the dictionary with trigger words for each sentiment
         _sentiment = new Dictionary<Sentiment, List<string>>
@@ -29,13 +30,13 @@ public class SentimentDetector
         {
             foreach (var trigger in kvp.Value)
             {
-                if (input.Contains(trigger))
+                if (input != null && input.IndexOf(trigger, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     return kvp.Key;
                 }
             }
-            return Sentiment.Neutral;
-        }
+            
+        }return Sentiment.Neutral;
     }
 
     // GetSentimentResponse(Sentiment s): return empathetic opening sentence
