@@ -16,36 +16,36 @@ public class ChatBot
         _memory = new MemoryStore();
     }
 
+    // Method to get the initial greeting message
     public string GetGreeting()
     {
-        return "Hello! I'm StratusBot, your friendly chatbot. What's your name?";
-    }
-
-    public string GetResponse(string input)
-    {
-        // Check if we're awaiting the user's name
         if (_awaitingName)
         {
-            _memory.UserName = input;
-            _awaitingName = false;
-            return $"Nice to meet you, {_memory.UserName}! What topic are you interested in?";
+            // Return the greeting message
+            return "Hello! I'm StratusBot, your friendly chatbot. What's your name?";
         }
-        // Check for keywords and get response
-        string keywordResponse = _keywords.GetResponse(input);
-        if (keywordResponse != "I'm sorry, I don't understand.")
+        return string.Empty;
+    }
+    // Method to process user input and generate a response
+    public string ProcessInput(string input)
+    {
+        if (_awaitingName)
         {
+            _memory.Store("UserName", input);
+            _awaitingName = false;
+            return $"Nice to meet you, {_memory.UserName}! What would you like to talk about today?";
+        }
+        // Check for keywords
+        string keywordResponse = _keywords.GetResponse(input);
+        if (!string.IsNullOrEmpty(keywordResponse))
+        {
+            _lastTopic = keywordResponse; // Store the last topic for follow-up
             return keywordResponse;
         }
-        // Detect sentiment and get empathetic response
+        // Detect sentiment
         Sentiment sentiment = _sentiment.Detect(input);
         string sentimentResponse = _sentiment.GetSentimentResponse(sentiment);
-        // Store favourite topic if mentioned
-        if (input.Contains("topic"))
-        {
-            _lastTopic = input; // Simplified for demonstration
-            _memory.FavouriteTopic = _lastTopic;
-            return $"{sentimentResponse} I see you're interested in {_lastTopic}. I'll remember that!";
-        }
-        return $"{sentimentResponse} I'm not sure how to respond to that. Can you tell me more?";
+        // Combine responses
+        return $"{sentimentResponse} {keywordResponse}".Trim();
     }
 }

@@ -38,17 +38,9 @@ public class KeywordResponder
             {"I'm doing well, thank you!", "I'm fine, how about you?", "All good here!",
              "I'm just a program, but I'm here to help you learn about cybersecurity! How can I assist you today?" } },
 
-            {"phishing", new List<string>
-            {"Phishing is a cyber attack where attackers impersonate legitimate entities to trick individuals into revealing sensitive information, such as passwords or credit card numbers." +
-             "It often occurs through email, social media, or other communication channels."}},
-            
             {"what is phishing", new List<string>
             {"Phishing is a cyber attack where attackers impersonate legitimate entities to trick individuals into revealing sensitive information, such as passwords or credit card numbers." +
              "It often occurs through email, social media, or other communication channels."}},
-
-            {"socialengineering", new List<string>
-            {"Social engineering is a manipulation technique that exploits human psychology to gain unauthorized access to information or systems." +
-             "It often involves tricking individuals into divulging confidential information or performing actions that compromise security."}},
 
             { "what is social engineering", new List<string>
             {"Social engineering is a manipulation technique that exploits human psychology to gain unauthorized access to information or systems." +
@@ -62,10 +54,6 @@ public class KeywordResponder
             {"A firewall is a network security device that monitors and filters incoming and outgoing network traffic based on an organization's previously established security policies." +
              "It acts as a barrier between a trusted internal network and untrusted external networks, such as the internet."}},
 
-            {"cybersecurity", new List<string>
-            {"Cybersecurity is the practice of protecting computers, servers, mobile devices, electronic systems, networks, and data from malicious attacks." +
-             "It involves implementing measures to prevent unauthorized access, data breaches, and other cyber threats."}},
-            
             {"what is cybersecurity", new List<string>
             {"Cybersecurity is the practice of protecting computers, servers, mobile devices, electronic systems, networks, and data from malicious attacks." +
              "It involves implementing measures to prevent unauthorized access, data breaches, and other cyber threats."}},
@@ -73,7 +61,7 @@ public class KeywordResponder
             {"malware", new List<string>
             {"Malware, short for malicious software, is any software intentionally designed to cause damage to a computer, server, client, or computer network." +
              "It can take various forms, including viruses, worms, trojans, ransomware, spyware, adware, and more."}},
-                
+
             {"what is malware", new List<string>
             {"Malware, short for malicious software, is any software intentionally designed to cause damage to a computer, server, client, or computer network." +
              "It can take various forms, including viruses, worms, trojans, ransomware, spyware, adware, and more."}},
@@ -106,10 +94,6 @@ public class KeywordResponder
             {"A botnet is a network of compromised computers or devices that are controlled by an attacker, often without the owners' knowledge." +
              "Botnets can be used to launch distributed denial-of-service (DDoS) attacks, send spam emails, or distribute malware."}},
 
-            {"spoofing", new List<string>
-            {"Spoofing is a cyber attack where an attacker disguises themselves as a trusted entity to gain unauthorized access to information or systems." +
-            "It can involve falsifying email addresses, IP addresses, or other identifiers to deceive the target."}},
-
             {"what is spoofing", new List<string>
             {"Spoofing is a cyber attack where an attacker disguises themselves as a trusted entity to gain unauthorized access to information or systems." +
              "It can involve falsifying email addresses, IP addresses, or other identifiers to deceive the target."}},
@@ -129,8 +113,8 @@ public class KeywordResponder
             {"what is a scam", new List<string>
             {"A scam is a fraudulent scheme designed to trick people into providing personal information or money."+
              "Common types include phishing emails, fake online stores, and misleading investment opportunities."}},
-                
-            {"generaltips", new List<string>
+
+            {"general tips", new List<string>
             {   "If you think you've been hacked, report it to the IT Security team immediately.",
                 "AI is now being used to create 'Deepfake' audio and video. Verify identity via a second channel.",
                 "Enable multi-factor authentication (MFA) whenever possible.",
@@ -143,8 +127,62 @@ public class KeywordResponder
                 "Keep your software and devices up to date with the latest security patches.",
                 "Shred physical documents that contain sensitive information."}},
 
+            {"general", new List<string>
+            {   "If you think you've been hacked, report it to the IT Security team immediately.",
+                "AI is now being used to create 'Deepfake' audio and video. Verify identity via a second channel.",
+                "Enable multi-factor authentication (MFA) whenever possible.",
+                "Be cautious of suspicious emails and links.",
+                "Clean desk policy: never leave passwords on sticky notes.",
+                "Regularly back up important data to an external drive or cloud storage.",
+                "Be cautious when using public Wi-Fi; consider using a VPN for added security.",
+                "Educate yourself about common cyber threats and how to recognize them.",
+                "Use strong, unique passwords for each of your accounts and consider using a password manager.",
+                "Keep your software and devices up to date with the latest security patches.",
+                "Shred physical documents that contain sensitive information."}},
 
-            {"phishingtips", new List<string>
+            {"cybersecurity tips", new List<string>
+            {   "If you think you've been hacked, report it to the IT Security team immediately.",
+                "AI is now being used to create 'Deepfake' audio and video. Verify identity via a second channel.",
+                "Enable multi-factor authentication (MFA) whenever possible.",
+                "Be cautious of suspicious emails and links.",
+                "Clean desk policy: never leave passwords on sticky notes.",
+                "Regularly back up important data to an external drive or cloud storage.",
+                "Be cautious when using public Wi-Fi; consider using a VPN for added security.",
+                "Educate yourself about common cyber threats and how to recognize them.",
+                "Use strong, unique passwords for each of your accounts and consider using a password manager.",
+                "Keep your software and devices up to date with the latest security patches.",
+                "Shred physical documents that contain sensitive information."}},
+
+            {"general cybersecurity tips", new List<string>
+            {   "If you think you've been hacked, report it to the IT Security team immediately.",
+                "AI is now being used to create 'Deepfake' audio and video. Verify identity via a second channel.",
+                "Enable multi-factor authentication (MFA) whenever possible.",
+                "Be cautious of suspicious emails and links.",
+                "Clean desk policy: never leave passwords on sticky notes.",
+                "Regularly back up important data to an external drive or cloud storage.",
+                "Be cautious when using public Wi-Fi; consider using a VPN for added security.",
+                "Educate yourself about common cyber threats and how to recognize them.",
+                "Use strong, unique passwords for each of your accounts and consider using a password manager.",
+                "Keep your software and devices up to date with the latest security patches.",
+                "Shred physical documents that contain sensitive information."}},
+
+            {"cybersecurity", new List<string>
+            {   "Cybersecurity is the practice of protecting computers, servers, mobile devices, electronic systems, networks, and data from malicious attacks." +
+                "It involves implementing measures to prevent unauthorized access, data breaches, and other cyber threats.",
+                "If you think you've been hacked, report it to the IT Security team immediately.",
+                "AI is now being used to create 'Deepfake' audio and video. Verify identity via a second channel.",
+                "Enable multi-factor authentication (MFA) whenever possible.",
+                "Be cautious of suspicious emails and links.",
+                "Clean desk policy: never leave passwords on sticky notes.",
+                "Regularly back up important data to an external drive or cloud storage.",
+                "Be cautious when using public Wi-Fi; consider using a VPN for added security.",
+                "Educate yourself about common cyber threats and how to recognize them.",
+                "Use strong, unique passwords for each of your accounts and consider using a password manager.",
+                "Keep your software and devices up to date with the latest security patches.",
+                "Shred physical documents that contain sensitive information."}},
+
+            // The following are phishing tips
+            {"phishing", new List<string>
             {   "Never click on links from unknown senders; they often lead to credential-harvesting sites.",
                 "Did you expect this attachment? If not, do not open it—even if it's from a 'friend'.",
                 "If an email creates a sense of extreme urgency, it's likely a trap. Attackers use this sense of urgency to get you to make rash decisions. Take a breath and verify.",
@@ -156,7 +194,67 @@ public class KeywordResponder
                 "Report suspicious emails using the 'Report Phishing' button in your mail client.",
                 "If an offer in an email seems too good to be true, it almost certainly is."}},
 
-            {"passwordtips", new List<string>
+            // The following are spoofing tips
+            {"spoofing", new List<string>
+            {   "Spoofing is a cyber attack where an attacker disguises themselves as a trusted entity to gain unauthorized access to information or systems." +
+                "It can involve falsifying email addresses, IP addresses, or other identifiers to deceive the target.",
+                "Be cautious of emails with unusual sender addresses or domains.",
+                "Look for misspellings or unusual characters in email addresses.",
+                "Verify the sender's identity through a second channel before taking any action.",
+                "Report suspected spoofing attempts to your IT Security team."}},
+
+            // The following are social engineering tips
+            {"social engineering", new List<string>
+            {   
+                "Did you expect this attachment? If not, do not open it—even if it's from a 'friend'.",
+                "If an email creates a sense of extreme urgency, it's likely a trap. Attackers use this sense of urgency to get you to make rash decisions. Take a breath and verify.",
+                "Never share credentials. Official organizations will never ask for your password via email.",
+                "Always verify the sender's email address and look for signs of spoofing, such as misspellings or unusual domains.",
+                "Be cautious of unsolicited emails or messages asking for personal information.",
+                "Always verify the sender's identity and avoid clicking on suspicious links.",
+                "If an offer in an email seems too good to be true, it almost certainly is."}},
+
+            // The following are phishing tips
+            {"phishing measures", new List<string>
+            {   "Never click on links from unknown senders; they often lead to credential-harvesting sites.",
+                "Did you expect this attachment? If not, do not open it—even if it's from a 'friend'.",
+                "If an email creates a sense of extreme urgency, it's likely a trap. Attackers use this sense of urgency to get you to make rash decisions. Take a breath and verify.",
+                "Never share credentials. Official organizations will never ask for your password via email.",
+                "Always verify the sender's email address and look for signs of spoofing, such as misspellings or unusual domains.",
+                "Be cautious of unsolicited emails or messages asking for personal information.",
+                "Always verify the sender's identity and avoid clicking on suspicious links.",
+                "Phishing isn't just email. 'Smishing' (SMS phishing) and 'Vishing' (voice phishing) are on the rise.",
+                "Report suspicious emails using the 'Report Phishing' button in your mail client.",
+                "If an offer in an email seems too good to be true, it almost certainly is."}},
+
+            // The following are phishing tips
+            {"phishing safeguards", new List<string>
+            {   "Never click on links from unknown senders; they often lead to credential-harvesting sites.",
+                "Did you expect this attachment? If not, do not open it—even if it's from a 'friend'.",
+                "If an email creates a sense of extreme urgency, it's likely a trap. Attackers use this sense of urgency to get you to make rash decisions. Take a breath and verify.",
+                "Never share credentials. Official organizations will never ask for your password via email.",
+                "Always verify the sender's email address and look for signs of spoofing, such as misspellings or unusual domains.",
+                "Be cautious of unsolicited emails or messages asking for personal information.",
+                "Always verify the sender's identity and avoid clicking on suspicious links.",
+                "Phishing isn't just email. 'Smishing' (SMS phishing) and 'Vishing' (voice phishing) are on the rise.",
+                "Report suspicious emails using the 'Report Phishing' button in your mail client.",
+                "If an offer in an email seems too good to be true, it almost certainly is."}},
+
+            // The following are phishing tips
+            {"how to stop phishing", new List<string>
+            {   "Never click on links from unknown senders; they often lead to credential-harvesting sites.",
+                "Did you expect this attachment? If not, do not open it—even if it's from a 'friend'.",
+                "If an email creates a sense of extreme urgency, it's likely a trap. Attackers use this sense of urgency to get you to make rash decisions. Take a breath and verify.",
+                "Never share credentials. Official organizations will never ask for your password via email.",
+                "Always verify the sender's email address and look for signs of spoofing, such as misspellings or unusual domains.",
+                "Be cautious of unsolicited emails or messages asking for personal information.",
+                "Always verify the sender's identity and avoid clicking on suspicious links.",
+                "Phishing isn't just email. 'Smishing' (SMS phishing) and 'Vishing' (voice phishing) are on the rise.",
+                "Report suspicious emails using the 'Report Phishing' button in your mail client.",
+                "If an offer in an email seems too good to be true, it almost certainly is."}},
+
+            // The following tips are more specific password safety tips
+            {"password safety", new List<string>
             {   "Use a passphrase or a password manager to create and store strong passwords.",
                 "Avoid using easily guessable information like birthdays or common words.",
                 "Never reuse the same password across multiple sites.",
@@ -164,6 +262,44 @@ public class KeywordResponder
                 "Enable MFA (Multi-Factor Authentication) for an extra layer of security, especially for sensitive accounts.",
                 "Change your password immediately if you suspect a breach."}},
 
+            // The following tips are more specific to password safety
+            {"password", new List<string>
+            {   "Use a passphrase or a password manager to create and store strong passwords.",
+                "Avoid using easily guessable information like birthdays or common words.",
+                "Never reuse the same password across multiple sites.",
+                "Biometric login (fingerprint or face ID) is a secure and convenient alternative to typing passwords.",
+                "Enable MFA (Multi-Factor Authentication) for an extra layer of security, especially for sensitive accounts.",
+                "Change your password immediately if you suspect a breach."}},
+
+            // The following tips are more specific to password safety
+            {"password etiquette", new List<string>
+            {   "Use a passphrase or a password manager to create and store strong passwords.",
+                "Avoid using easily guessable information like birthdays or common words.",
+                "Never reuse the same password across multiple sites.",
+                "Biometric login (fingerprint or face ID) is a secure and convenient alternative to typing passwords.",
+                "Enable MFA (Multi-Factor Authentication) for an extra layer of security, especially for sensitive accounts.",
+                "Change your password immediately if you suspect a breach."}},
+
+            // The following tips are more specific to password safety
+            {"strong passwords", new List<string>
+            {   "Use a passphrase or a password manager to create and store strong passwords.",
+                "Avoid using easily guessable information like birthdays or common words.",
+                "Never reuse the same password across multiple sites.",
+                "Biometric login (fingerprint or face ID) is a secure and convenient alternative to typing passwords.",
+                "Enable MFA (Multi-Factor Authentication) for an extra layer of security, especially for sensitive accounts.",
+                "Change your password immediately if you suspect a breach."}},
+
+            // The following tips are more specific password safety tips
+            {"strong password", new List<string>
+            {   "Use a passphrase or a password manager to create and store strong passwords.",
+                "Avoid using easily guessable information like birthdays or common words.",
+                "Never reuse the same password across multiple sites.",
+                "Biometric login (fingerprint or face ID) is a secure and convenient alternative to typing passwords.",
+                "Enable MFA (Multi-Factor Authentication) for an extra layer of security, especially for sensitive accounts.",
+                "Change your password immediately if you suspect a breach."}},
+
+            
+            //The following tips are more general device safety tips
             {"device", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -177,6 +313,7 @@ public class KeywordResponder
                 "Encryption protects your data if your device is stolen. Ensure BitLocker or FileVault is on.",
                 "Check your privacy settings on social media to limit what strangers can see."}},
 
+            // The following tips are more general device safety tips
             {"software", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -194,6 +331,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are more general device safety tips
             {"how to keep my devices safe", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -211,6 +349,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are more general device safety tips
             {"how to keep my device safe", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -228,6 +367,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are more general device safety tips
             {"how to protect my devices", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -245,6 +385,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are more general device safety tips
             {"how to protect my device", new List<string>
             {   "Always keep your operating system and apps updated to patch security vulnerabilities.",
                 "Lock your computer (Win + L) every time you walk away from your desk.",
@@ -262,6 +403,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are online safety tips
             {"how to stay safe online", new List<string>
             {   "Public Wi-Fi is insecure. Use a VPN if you must connect in coffee shops or airports.",
                 "Your home router should have a unique, strong password—not the default 'admin'.",
@@ -273,6 +415,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are online safety tips
             {"online", new List<string>
             {   "Public Wi-Fi is insecure. Use a VPN if you must connect in coffee shops or airports.",
                 "Your home router should have a unique, strong password—not the default 'admin'.",
@@ -284,7 +427,8 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
-            {"browswer", new List<string>
+            // The following tips are online safety tips
+            {"browser", new List<string>
             {   "Public Wi-Fi is insecure. Use a VPN if you must connect in coffee shops or airports.",
                 "Your home router should have a unique, strong password—not the default 'admin'.",
                 "Avoid working on sensitive documents in public places where people can 'shoulder surf'.",
@@ -295,6 +439,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are online safety tips
             {"browsing", new List<string>
             {   "Public Wi-Fi is insecure. Use a VPN if you must connect in coffee shops or airports.",
                 "Your home router should have a unique, strong password—not the default 'admin'.",
@@ -306,6 +451,7 @@ public class KeywordResponder
                 "Always log out of sensitive accounts (like banking) when you're finished.",
                 "Use an encrypted messaging app for sensitive business discussions."}},
 
+            // The following tips are online safety tips
             {"internet", new List<string>
             {   "Public Wi-Fi is insecure. Use a VPN if you must connect in coffee shops or airports.",
                 "Your home router should have a unique, strong password—not the default 'admin'.",

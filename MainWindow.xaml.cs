@@ -24,13 +24,16 @@ namespace StratusBot
             //play the welcome sound
             Sound sound = new Sound();
 
-            // Initialize the chatbot
             chatBot = new ChatBot();
 
-            //call the get the greeting message from the chatbot
-            string greeting = chatBot.GetGreeting();
+            
+            //string greeting = chatBot.GetGreeting();
+           
 
         }
+
+  
+
 
         // Method to update the user status indicator in the UI
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -56,17 +59,27 @@ namespace StratusBot
         {
             //read the input from the UI and call the chat bot to send the message and display the response in the UI
             string userInput = InputTextBox.Text;
-            string response = chatBot.GetResponse(userInput);
-            
-
+            string response = chatBot.ProcessInput(userInput);
         }
+
+        //ScrollViewer ScrollChanged event handler to auto-scroll to the bottom when new messages are added
+        private void ChatScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.ExtentHeightChange > 0)
+            {
+                ChatScrollViewer.ScrollToBottom();
+            }
+        }
+
         //UserInput KeyDown event handler to send message when Enter key is pressed
         private void UserInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 SendMessage();
-                e.Handled = true; // Prevent the default behavior of the Enter key
+                e.Handled = true;
+                // Clear the input box after sending the message
+                InputTextBox.Clear();
             }
         }
 
@@ -92,8 +105,11 @@ namespace StratusBot
             AppendUserMessage(userInput, false);
 
             // get the chatbot response and append it to the chat display
-            string response = chatBot.GetResponse(userInput);
+            string response = chatBot.ProcessInput(userInput);
             AppendUserMessage(response, true);
+
+            // Clear the input box after sending the message
+            InputTextBox.Clear();
         }
     }
 }

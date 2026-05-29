@@ -40,8 +40,8 @@
 
         <!-- Chat Display -->
         <Border Grid.Row="1" Margin="10" Background="LightCyan" BorderBrush="LightGray" BorderThickness="1" Padding="5">
-            <ScrollViewer Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto">
-                <StackPanel Name="ChatDisplay" Orientation="Horizontal">
+            <ScrollViewer Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto" ScrollChanged="ChatScrollViewer_ScrollChanged">
+                <StackPanel Name="ChatDisplay" Orientation="Vertical">
                     <!-- Chat messages will be added here dynamically -->
                 </StackPanel>
             </ScrollViewer>
