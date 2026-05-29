@@ -9,18 +9,27 @@ public class MemoryStore
     public void Store(string key, string value)
     {
         // Implementation for storing key-value pairs
-
+        lock (this)
+        {
+            if (this.UserName == null) {
+                this.UserName = value;
+            }
+            return;
+        }
     }
 
-    public string Retrieve(string key)
+    public string Recall(string key)
     {
         // Implementation for retrieving value by key
         return string.Empty;
+
     }
 
     public void GetPersonalisedOpener()
     {
         // Implementation for generating a personalised opener based on stored information
+        string opener = $"Hello {this.UserName}, it's great to see you again! How can I assist you today?";
+
     }
 }
 

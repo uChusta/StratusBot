@@ -87,6 +87,13 @@ namespace StratusBot
         {
             // Call the SendMessage method when the send button is clicked
             SendMessage();
+            // read the user input and append it to the chat display
+            string userInput = InputTextBox.Text;
+            AppendUserMessage(userInput, false);
+
+            // get the chatbot response and append it to the chat display
+            string response = chatBot.GetResponse(userInput);
+            AppendUserMessage(response, true);
         }
     }
 }
