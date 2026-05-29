@@ -11,37 +11,25 @@ using System.Windows.Shapes;
 
 namespace StratusBot
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
-        private ChatBot chatBot;   
+        private ChatBot chatBot;
+
+
         public MainWindow()
         {
             InitializeComponent();
+            chatBot = new ChatBot();
+
+            AppendUserMessage(chatBot.GetGreeting(), true);
 
             //play the welcome sound
             Sound sound = new Sound();
-
-            chatBot = new ChatBot();
-
-            
-            //string greeting = chatBot.GetGreeting();
-           
-
         }
-
-  
-
 
         // Method to update the user status indicator in the UI
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Simulate user status (for demonstration purposes)
-            bool isUserOnline = true; // This could be determined by actual logic in a real application
-            UpdateUserStatus(isUserOnline);
-        }
+
 
         private void  UpdateUserStatus(bool isOnline)
         {
@@ -59,7 +47,17 @@ namespace StratusBot
         {
             //read the input from the UI and call the chat bot to send the message and display the response in the UI
             string userInput = InputTextBox.Text;
+            if (string.IsNullOrWhiteSpace(userInput))
+                return; // Don't send empty messages
+            AppendUserMessage(userInput, false);
+
             string response = chatBot.ProcessInput(userInput);
+            AppendUserMessage(response, true);
+
+            InputTextBox.Clear();
+            InputTextBox.Focus();
+
+
         }
 
         //ScrollViewer ScrollChanged event handler to auto-scroll to the bottom when new messages are added
@@ -77,7 +75,7 @@ namespace StratusBot
             if (e.Key == Key.Enter)
             {
                 SendMessage();
-                e.Handled = true;
+                //e.Handled = true;
                 // Clear the input box after sending the message
                 InputTextBox.Clear();
             }
