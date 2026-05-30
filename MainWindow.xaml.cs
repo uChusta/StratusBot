@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows;
 
 namespace StratusBot
 {
@@ -20,17 +21,33 @@ namespace StratusBot
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadAsciiArt();
+
             chatBot = new ChatBot();
 
             AppendUserMessage(chatBot.GetGreeting(), true);
+
 
             //play the welcome sound
             Sound sound = new Sound();
         }
 
+        private void LoadAsciiArt()
+        {
+            // Load the ASCII art
+
+            AsciiTextBlock.Text = @"""
+             ████ █████ ████   ███  █████ █   █  ████ ████   ███  █████ 
+            █       █   █   █ █   █   █   █   █ █     █   █ █   █   █   
+             ███    █   ████  █████   █   █   █  ███  ████  █   █   █   
+                █   █   █  █  █   █   █   █   █     █ █   █ █   █   █   
+            ████    █   █   █ █   █   █    ███  ████  ████   ███    █ """;  
+            
+        }
+
+
         // Method to update the user status indicator in the UI
-
-
         private void  UpdateUserStatus(bool isOnline)
         {
             if (isOnline)
@@ -75,7 +92,7 @@ namespace StratusBot
             if (e.Key == Key.Enter)
             {
                 SendMessage();
-                //e.Handled = true;
+                e.Handled = true;
                 // Clear the input box after sending the message
                 InputTextBox.Clear();
             }

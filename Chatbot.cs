@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class ChatBot
 {
@@ -7,6 +8,9 @@ public class ChatBot
     private MemoryStore _memory;
     private bool _awaitingName = true;
     private string _lastTopic;
+
+
+    // Fallback responses for when no keywords or sentiment match
     private Random _random = new Random();
     private List<string> _fallbacks = new List<string>
     {
@@ -87,16 +91,16 @@ public class ChatBot
             return "I can provide cybersecurity tips, explain concepts like phishing or malware, and answer common security questions. Try asking 'what is phishing' or 'general tips'.";
         }
 
-        // 4) Keyword responder
+        //4) Keyword responder
         string keywordResponse = _keywords.GetResponse(input);
         if (!string.IsNullOrEmpty(keywordResponse) && keywordResponse != "I'm sorry, I don't understand.")
         {
-            // store the last topic as the response text for follow-up use
+             //store the last topic as the response text for follow-up use
             _lastTopic = keywordResponse;
             return (sentimentOpener + keywordResponse).Trim();
         }
 
-        // 6) Fallback to a random response
+         //6) Fallback to a random response
         string fallback = _fallbacks[_random.Next(_fallbacks.Count)];
         return (sentimentOpener + fallback).Trim();
     }
