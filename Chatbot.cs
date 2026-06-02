@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 public class ChatBot
 {
-    private KeywordResponder _keywords;
+    public KeywordResponder _keywords;
     private SentimentDetector _sentiment;
-    private MemoryStore _memory;
+    public MemoryStore _memory;
     private bool _awaitingName = true;
     private string _lastTopic;
-
+    private Random _random = new Random();
 
     // Fallback responses for when no keywords or sentiment match
-    private Random _random = new Random();
     private List<string> _fallbacks = new List<string>
     {
         "Interesting — tell me more.",
@@ -27,6 +26,10 @@ public class ChatBot
         _sentiment = new SentimentDetector();
         _memory = new MemoryStore();
         _awaitingName = true;
+    }
+    public MemoryStore Memory
+    {
+        get { return _memory; }
     }
 
     // Method to get the initial greeting message
@@ -49,6 +52,11 @@ public class ChatBot
             _awaitingName = false;
             string name = string.IsNullOrEmpty(_memory.UserName) ? input : _memory.UserName;
             return $"Nice to meet you, {name}! What would you like to talk about today?";
+        }
+        //favourite topic
+        if (!string.IsNullOrEmpty(_memory.FavouriteTopic))
+        {
+            _lastTopic = _memory.FavouriteTopic;
         }
 
         // 2) Follow-up phrases -> return more on last topic
@@ -95,13 +103,26 @@ public class ChatBot
         string keywordResponse = _keywords.GetResponse(input);
         if (!string.IsNullOrEmpty(keywordResponse) && keywordResponse != "I'm sorry, I don't understand.")
         {
-             //store the last topic as the response text for follow-up use
+            //store the last topic as the response text for follow-up use
             _lastTopic = keywordResponse;
             return (sentimentOpener + keywordResponse).Trim();
         }
+        //Reprase or ask a more specific question
+        if (!string.IsNullOrWhiteSpace(input))
+        {
+            string clarification = "Could you rephrase that or ask a more specific question?";
+            return (sentimentOpener + clarification).Trim();
+        }
 
-         //6) Fallback to a random response
-        string fallback = _fallbacks[_random.Next(_fallbacks.Count)];
-        return (sentimentOpener + fallback).Trim();
+        //6) Fallback to a random response
+        if (!string.IsNullOrEmpty(sentimentOpener))
+        { 
+            string fallback = _fallbacks[_random.Next(_fallbacks.Count)];
+            return (sentimentOpener + fallback).Trim();
+        }
+
+        //7) Default response if no other conditions match
+        return "I'm sorry, I don't understand.";
+        
     }
 }

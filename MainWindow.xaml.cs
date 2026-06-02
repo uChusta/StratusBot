@@ -62,11 +62,23 @@ namespace StratusBot
 
         private void SendMessage()
         {
+            SendMessageInternal();
+        }
+
+        private void SendMessageInternal()
+        {
             //read the input from the UI and call the chat bot to send the message and display the response in the UI
             string userInput = InputTextBox.Text;
             if (string.IsNullOrWhiteSpace(userInput))
                 return; // Don't send empty messages
             AppendUserMessage(userInput, false);
+
+            //update the user status indicator
+            UpdateUserStatus(true);
+
+            //check if the user's input contains a specific keyword
+           bool isKeyword = userInput.Contains(chatBot._keywords.GetAllKeywords(), StringComparison.OrdinalIgnoreCase);
+
 
             string response = chatBot.ProcessInput(userInput);
             AppendUserMessage(response, true);
@@ -109,22 +121,21 @@ namespace StratusBot
                 HorizontalAlignment = isBot ? HorizontalAlignment.Left : HorizontalAlignment.Right,
                 MaxWidth = 300
             };
+
+            UserDisplay.Text = chatBot._memory.UserName ?? "Unknown";
+
             ChatDisplay.Children.Add(textBlock);
         }
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             // Call the SendMessage method when the send button is clicked
             SendMessage();
-            // read the user input and append it to the chat display
-            string userInput = InputTextBox.Text;
-            AppendUserMessage(userInput, false);
-
-            // get the chatbot response and append it to the chat display
-            string response = chatBot.ProcessInput(userInput);
-            AppendUserMessage(response, true);
 
             // Clear the input box after sending the message
             InputTextBox.Clear();
         }
+
+        // Method to update the user status indicator in the UI
+
     }
 }
