@@ -38,12 +38,12 @@ namespace StratusBot
         {
             // Load the ASCII art
 
-            AsciiTextBlock.Text = @"
+            AsciiTextBlock.Text = @"""
              ████ █████ ████   ███  █████ █   █  ████ ████   ███  █████ 
             █       █   █   █ █   █   █   █   █ █     █   █ █   █   █   
              ███    █   ████  █████   █   █   █  ███  ████  █   █   █   
                 █   █   █  █  █   █   █   █   █     █ █   █ █   █   █   
-            ████    █   █   █ █   █   █    ███  ████  ████   ███    █ ";  
+            ████    █   █   █ █   █   █    ███  ████  ████   ███    █ """;  
             
         }
 
@@ -86,8 +86,6 @@ namespace StratusBot
 
             InputTextBox.Clear();
             InputTextBox.Focus();
-
-
         }
 
         //ScrollViewer ScrollChanged event handler to auto-scroll to the bottom when new messages are added
@@ -112,19 +110,31 @@ namespace StratusBot
 
         private void  AppendUserMessage(string message, bool isBot)
         {
+            // Create a TextBlock for the message
             TextBlock textBlock = new TextBlock
             {
                 Text = message,
-                Margin = new Thickness(5),
+                Margin = new Thickness(0),
                 TextWrapping = TextWrapping.Wrap,
-                Background = isBot ? Brushes.LightBlue : Brushes.LightGreen,
-                HorizontalAlignment = isBot ? HorizontalAlignment.Left : HorizontalAlignment.Right,
+                Foreground = Brushes.Black, 
                 MaxWidth = 300
+            };
+
+            // Create a bubble for the message
+            Border bubble = new Border
+            {
+                Background = isBot ? Brushes.LightBlue : Brushes.LightGreen,
+                CornerRadius = new CornerRadius(16),
+                Padding = new Thickness(10),
+                Margin = new Thickness(5),
+                Child = textBlock, 
+                HorizontalAlignment = isBot ? HorizontalAlignment.Left : HorizontalAlignment.Right,
+                MaxWidth = 420
             };
 
             UserDisplay.Text = chatBot._memory.UserName ?? "Unknown";
 
-            ChatDisplay.Children.Add(textBlock);
+            ChatDisplay.Children.Add(bubble);
         }
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
@@ -134,8 +144,6 @@ namespace StratusBot
             // Clear the input box after sending the message
             InputTextBox.Clear();
         }
-
-        // Method to update the user status indicator in the UI
 
     }
 }
