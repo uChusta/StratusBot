@@ -23,10 +23,10 @@
         
             <!-- Header -->
         <StackPanel Grid.Row="0" Margin="10" HorizontalAlignment="Center">
-            <TextBlock Text="StratusBot" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Center"/>
+            <TextBlock Text="Stratus Shield" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Center"/>
            
             <Viewbox Stretch="Uniform">
-                <TextBlock x:Name="AsciiTextBlock" FontFamily="Consolas" FontSize="14" xml:space="preserve"/>
+                <TextBlock x:Name="AsciiTextBlock" FontFamily="Consolas" FontSize="14" xml:space="preserve" HorizontalAlignment="Center"/>
             </Viewbox>
         </StackPanel>
         

@@ -31,18 +31,19 @@ namespace StratusBot
 
             //play the welcome sound
             Sound sound = new Sound();
+            sound.PlaySound();
         }
 
         private void LoadAsciiArt()
         {
             // Load the ASCII art
 
-            AsciiTextBlock.Text = @"""
+            AsciiTextBlock.Text = @"
              ████ █████ ████   ███  █████ █   █  ████ ████   ███  █████ 
             █       █   █   █ █   █   █   █   █ █     █   █ █   █   █   
              ███    █   ████  █████   █   █   █  ███  ████  █   █   █   
                 █   █   █  █  █   █   █   █   █     █ █   █ █   █   █   
-            ████    █   █   █ █   █   █    ███  ████  ████   ███    █ """;  
+            ████    █   █   █ █   █   █    ███  ████  ████   ███    █ ";  
             
         }
 
@@ -101,13 +102,12 @@ namespace StratusBot
         //UserInput KeyDown event handler to send message when Enter key is pressed
         private void UserInput_KeyDown(object sender, KeyEventArgs e)
         {
+            // Call the SendMessage method when the Enter key is pressed
             if (e.Key == Key.Enter)
             {
                 SendMessage();
-                e.Handled = true;
-                // Clear the input box after sending the message
-                InputTextBox.Clear();
             }
+            InputTextBox.Clear();
         }
 
         private void  AppendUserMessage(string message, bool isBot)

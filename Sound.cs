@@ -18,7 +18,7 @@ using NAudio.Wave;
                 output.Play();
                 while (output.PlaybackState == PlaybackState.Playing)
                 {
-                    Thread.Sleep(100);
+                    //Thread.Sleep(0);
                 }
             }
             catch

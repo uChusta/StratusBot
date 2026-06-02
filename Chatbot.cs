@@ -122,7 +122,7 @@ public class ChatBot
         }
 
         //7) Default response if no other conditions match
-        return "I'm sorry, I don't understand.";
+        return (sentimentOpener + _fallbacks[_random.Next(_fallbacks.Count)]).Trim();
         
     }
 }
