@@ -21,13 +21,15 @@ namespace StratusBot
         public MainWindow()
         {
             InitializeComponent();
-
+            
+            // Load the ASCII art
             LoadAsciiArt();
-
+            
+            // Initialize the chatbot
             chatBot = new ChatBot();
 
+            // Set the user status indicator to online
             AppendUserMessage(chatBot.GetGreeting(), true);
-
 
             //play the welcome sound
             Sound sound = new Sound();
@@ -60,12 +62,14 @@ namespace StratusBot
                 StatusIndicator.Fill = new SolidColorBrush(Colors.Red);
             }
         }
-
+        
+        // Method to send a message
         private void SendMessage()
         {
             SendMessageInternal();
         }
 
+        
         private void SendMessageInternal()
         {
             //read the input from the UI and call the chat bot to send the message and display the response in the UI
@@ -80,7 +84,7 @@ namespace StratusBot
             //check if the user's input contains a specific keyword
            bool isKeyword = userInput.Contains(chatBot._keywords.GetAllKeywords(), StringComparison.OrdinalIgnoreCase);
 
-
+            //send the message to the chatbot
             string response = chatBot.ProcessInput(userInput);
             AppendUserMessage(response, true);
 
@@ -132,8 +136,10 @@ namespace StratusBot
                 MaxWidth = 420
             };
 
+            // Set the name of the user
             UserDisplay.Text = chatBot._memory.UserName ?? "Unknown";
 
+            // Add the bubble to the chat display
             ChatDisplay.Children.Add(bubble);
         }
         private void SendButton_Click(object sender, RoutedEventArgs e)

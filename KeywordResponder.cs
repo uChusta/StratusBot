@@ -10,6 +10,7 @@ public class KeywordResponder
 
     public KeywordResponder()
     {
+        // initialize the dictionary with trigger words for each response
         _greeting = new Dictionary<string, List<string>>
         {
             { "hello", new List<string> 
@@ -466,6 +467,7 @@ public class KeywordResponder
         };
     }
 
+    // GetResponse(string input): return a response based on the input
     public string GetResponse(string input)
     {
         foreach (var kvp in _responses)

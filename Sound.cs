@@ -10,12 +10,15 @@ using NAudio.Wave;
     {
         public void PlaySound()
         {
+            // play the welcome sound
             try
             {
                 using var audio = new AudioFileReader("Welcome.wav") { Volume = 0.25f }; // 25% volume
                 using var output = new WaveOutEvent();
                 output.Init(audio);
                 output.Play();
+
+                // wait for sound to finish 
                 while (output.PlaybackState == PlaybackState.Playing)
                 {
                     //Thread.Sleep(0);

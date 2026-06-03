@@ -10,6 +10,7 @@ public class ChatBot
     private string _lastTopic;
     private Random _random = new Random();
 
+
     // Fallback responses for when no keywords or sentiment match
     private List<string> _fallbacks = new List<string>
     {
@@ -27,6 +28,8 @@ public class ChatBot
         _memory = new MemoryStore();
         _awaitingName = true;
     }
+
+    // Property to access the memory store
     public MemoryStore Memory
     {
         get { return _memory; }
@@ -45,7 +48,7 @@ public class ChatBot
 
         string inputLower = input.ToLowerInvariant();
 
-        // 1) If awaiting name capture it and return welcome
+        //If awaiting name capture it and return welcome
         if (_awaitingName)
         {
             _memory.Store("UserName", input);
@@ -53,13 +56,14 @@ public class ChatBot
             string name = string.IsNullOrEmpty(_memory.UserName) ? input : _memory.UserName;
             return $"Nice to meet you, {name}! What would you like to talk about today?";
         }
+
         //favourite topic
         if (!string.IsNullOrEmpty(_memory.FavouriteTopic))
         {
             _lastTopic = _memory.FavouriteTopic;
         }
 
-        // 2) Follow-up phrases -> return more on last topic
+        //Follow-up phrases -> return more on last topic
         if (!string.IsNullOrEmpty(_lastTopic))
         {
             if (inputLower.Contains("tell me more") || inputLower.Contains("explain more") || inputLower.Contains("more info") || inputLower.Contains("more about that"))
@@ -68,14 +72,14 @@ public class ChatBot
             }
         }
 
-        // 3) Sentiment detection (opener if not Neutral)
+        //Sentiment detection (opener if not Neutral)
         Sentiment sentiment = _sentiment.Detect(input);
         string sentimentOpener = string.Empty;
         try
         {
             if (sentiment != Sentiment.Neutral)
             {
-                // Reuse existing method to get a sentiment opener/response
+                //Reuse existing method to get a sentiment opener/response
                 sentimentOpener = _sentiment.GetSentimentResponse(sentiment);
                 if (!string.IsNullOrEmpty(sentimentOpener))
                     sentimentOpener += " ";
@@ -83,11 +87,11 @@ public class ChatBot
         }
         catch
         {
-            // If SentimentDetector doesn't support GetSentimentResponse or throws, ignore opener
+            //If SentimentDetector doesn't support GetSentimentResponse or throws, ignore opener
             sentimentOpener = string.Empty;
         }
 
-        // 5) Special phrases: "how are you", "what can you do", "purpose"
+        //Special phrases: "how are you", "what can you do", "purpose"
         if (inputLower.Contains("how are you"))
         {
             string resp = _keywords.GetResponse("how are you");
@@ -99,7 +103,7 @@ public class ChatBot
             return "I can provide cybersecurity tips, explain concepts like phishing or malware, and answer common security questions. Try asking 'what is phishing' or 'general tips'.";
         }
 
-        //4) Keyword responder
+        //Keyword responder
         string keywordResponse = _keywords.GetResponse(input);
         if (!string.IsNullOrEmpty(keywordResponse) && keywordResponse != "I'm sorry, I don't understand.")
         {
@@ -114,14 +118,14 @@ public class ChatBot
             return (sentimentOpener + clarification).Trim();
         }
 
-        //6) Fallback to a random response
+        //Fallback to a random response
         if (!string.IsNullOrEmpty(sentimentOpener))
         { 
             string fallback = _fallbacks[_random.Next(_fallbacks.Count)];
             return (sentimentOpener + fallback).Trim();
         }
 
-        //7) Default response if no other conditions match
+        //Default response if no other conditions match
         return (sentimentOpener + _fallbacks[_random.Next(_fallbacks.Count)]).Trim();
         
     }

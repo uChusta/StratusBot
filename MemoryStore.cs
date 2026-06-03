@@ -1,6 +1,10 @@
 ﻿using System;
-using System.Security.Permissions;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq.Expressions;
+using System.Security.Permissions;
+using System.Text.Json;
 
 public class MemoryStore
 {
@@ -8,6 +12,19 @@ public class MemoryStore
     public string UserName { get; private set; }
     public string FavouriteTopic { get; private set; }
 
+    private readonly string _filePath;
+
+    //persistence
+    public MemoryStore()
+    {
+        string appDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StratusBot");
+        Directory.CreateDirectory(appDir);
+        _filePath = Path.Combine(appDir, "memory.json");
+
+        LoadFromFile();
+    }
+
+    //persistence
     public void Store(string key, string value)
     {
         // Implementation for storing  any key-value pairs
@@ -21,9 +38,19 @@ public class MemoryStore
         if (string.Equals(key, nameof(UserName), StringComparison.OrdinalIgnoreCase))
             UserName = value;
         else if (string.Equals(key, nameof(FavouriteTopic), StringComparison.OrdinalIgnoreCase))
-            FavouriteTopic = value;
-    
+        FavouriteTopic = value;
+
+        //persistence
+        try
+        {
+            SaveToFile();
+        }
+        catch
+        {
+            //ignore
+        }
     }
+ 
 
     public string Recall(string key)
     {
@@ -43,6 +70,58 @@ public class MemoryStore
 
         }
 
+    }
+    //
+    private void SaveToFile()
+    {
+        var model = new PersistenceModel
+        {
+            Store = new Dictionary<string, string>(_store),
+            UserName = this.UserName,
+            FavouriteTopic = this.FavouriteTopic
+        };
+
+        var opts = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(model, opts);
+
+        // atomic write
+        string tmp = _filePath + ".tmp";
+        File.WriteAllText(tmp, json);
+        File.Move(tmp, _filePath, true);
+    }
+
+    private void LoadFromFile()
+    {
+        if (!File.Exists(_filePath))
+            return;
+
+        try
+        {
+            string json = File.ReadAllText(_filePath);
+            var model = JsonSerializer.Deserialize<PersistenceModel>(json);
+            if (model is null)
+                return;
+
+            if (model.Store != null)
+            {
+                foreach (var kvp in model.Store)
+                    _store[kvp.Key] = kvp.Value;
+            }
+
+            UserName = model.UserName ?? UserName;
+            FavouriteTopic = model.FavouriteTopic ?? FavouriteTopic;
+        }
+        catch
+        {
+            // ignore load errors for now (or log as needed)
+        }
+    }
+    
+    private class PersistenceModel
+    {
+        public Dictionary<string, string> Store { get; set; }
+        public string UserName { get; set; }
+        public string FavouriteTopic { get; set; }
     }
 }
 

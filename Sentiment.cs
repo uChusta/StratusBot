@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public enum Sentiment { Neutral, Worried, Curious, Frustrated, Happy }
+// Sentiment Detector
+public enum Sentiment { Neutral, Worried, Curious, Frustrated, Happy, Sad }
 public class SentimentDetector
 {
     // dictionary mapping Sentiment -> list of trigger words
@@ -16,7 +17,8 @@ public class SentimentDetector
             { Sentiment.Worried, new List<string> { "worried", "scared", "anxious" , "nervous" , "unsafe"  } },
             { Sentiment.Curious, new List<string> { "curious", "interested", "wondering" , "how does" , "want to know" } },
             { Sentiment.Frustrated, new List<string> { "frustrated", "annoyed", "confused" , "don't understand" } },
-            { Sentiment.Happy, new List<string> { "great","thanks" , "awesome", "helpful", "love it" } }
+            { Sentiment.Happy, new List<string> { "great","thanks" , "awesome", "helpful", "love it" } },
+            { Sentiment.Sad, new List<string> { "sad", "depressed", "lonely", "alone", "unhappy" } }
         };
 
     
@@ -52,6 +54,8 @@ public class SentimentDetector
                 return "I'm sorry to hear that you're frustrated. Let's see if we can figure this out together.";
             case Sentiment.Happy:
                 return "I'm glad to hear that you're happy! Is there anything else I can assist you with?";
+            case Sentiment.Sad:
+                return "I'm sorry to hear that you're sad. Let's see if we can figure this out together.";
             default:
                 return "I'm here to help.";
         }
