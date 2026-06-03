@@ -36,8 +36,10 @@
                 <TextBlock x:Name="AsciiTextBlock" 
                            FontFamily="Consolas" 
                            FontSize="14" 
-                           xml:space="preserve" 
-                           HorizontalAlignment="Center"/>
+                           xml:space="preserve"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextWrapping="NoWrap"/>
             </Viewbox>
         </StackPanel>
         
