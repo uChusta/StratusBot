@@ -58,12 +58,5 @@ StratusBot (branded in the UI as "Stratus Shield") is a cybersecurity awareness 
 - UI:
   - MainWindow contains a TabControl (Chat / Tasks).
   - TaskAssistant is a reusable UserControl for tasks.
-
-## Next steps / TODOs (ideas)
-- Add localization support for multi-language tips.
-- Add unit tests for QuizManager and TaskManager logic.
-- Add secure storage options for sensitive config (avoid storing secrets in repo / plain JSON).
-- Improve installer packaging and sign build artifacts when ready.
-
 ---
 Updated README: document features and changelog since 2026-06-03
