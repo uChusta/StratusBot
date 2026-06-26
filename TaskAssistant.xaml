@@ -8,7 +8,8 @@
              d:DesignHeight="600" d:DesignWidth="800"
              MinWidth="350" MinHeight="500"
              Background="LightSteelBlue">
-    <!--rounded textbox-->
+  
+        <!--rounded textbox-->
     <UserControl.Resources>
         <Style x:Key="RoundedTextBox" TargetType="TextBox">
             <Setter Property="Background" Value="White"/>
@@ -69,10 +70,10 @@
 
             <!-- 2. Input Form -->
             <StackPanel Grid.Row="1" Margin="0,0,0,15">
-               
+
                 <TextBlock Text="Task Title:" Margin="0,0,0,3" FontWeight="SemiBold"/>
                 <TextBox x:Name="TxtTitle" Margin="0,0,0,10" Padding="5"/>
-                
+
                 <TextBlock Text="Description:" Margin="0,0,0,3" FontWeight="SemiBold"/>
                 <TextBox x:Name="TxtDescription" Height="50" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Padding="5"/>
 
@@ -116,4 +117,5 @@
             </UniformGrid>
         </Grid>
     </Border>
+  
 </UserControl>

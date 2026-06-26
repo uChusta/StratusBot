@@ -87,9 +87,9 @@
         </TabItem>
             
         <!--Task assistant tab-->
-            <TabItem Header="Tasks">
+        <TabItem Header="Tasks">
                 <local:TaskAssistant/>
-            </TabItem>
+        </TabItem>
         </TabControl>
 
         <!-- Input Row -->
