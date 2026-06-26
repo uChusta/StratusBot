@@ -35,8 +35,8 @@ namespace StratusBot
             AppendUserMessage(chatBot.GetGreeting(), true);
 
             //play the welcome sound
-            //Sound sound = new Sound();
-            //sound.PlaySound();
+            Sound sound = new Sound();
+            sound.PlaySound();
         }
         private void LoadAsciiArt()
         {
