@@ -20,8 +20,8 @@
             <RowDefinition Height="Auto"/>
             <!-- Input row -->
         </Grid.RowDefinitions>
-        
-            <!-- Header -->
+
+        <!-- Header -->
         <StackPanel Grid.Row="0" 
                     Margin="10" 
                     HorizontalAlignment="Center">
@@ -30,7 +30,7 @@
                        FontWeight="Bold" 
                        Foreground="DarkBlue" 
                        HorizontalAlignment="Center"/>
-           
+
             <Viewbox Stretch="Uniform" 
                      HorizontalAlignment="Left">
                 <TextBlock x:Name="AsciiTextBlock" 
@@ -42,7 +42,7 @@
                            TextWrapping="NoWrap"/>
             </Viewbox>
         </StackPanel>
-        
+
         <!-- User Display -->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
@@ -55,19 +55,21 @@
                        FontWeight="Bold" 
                        Margin="0,0,8,0"
                        VerticalAlignment="Center"/>
-            
+
             <Ellipse Name="StatusIndicator" 
                      Width="10" 
                      Height="10" 
                      Fill="Green" 
                      Margin="0,0,8,0" 
                      VerticalAlignment="Center"/>
-            
-        </StackPanel>
 
-        <!-- Chat Display -->
-        <Border Grid.Row="1" 
-                Margin="10" 
+        </StackPanel>
+        <!--TabControl ChatBot and Task Assistant-->
+        <TabControl Grid.Row="1" Margin="10">
+        <!-- Chat Display Tab -->
+        <TabItem Header="Chat">
+            <Border Grid.Row="1" 
+                Margin="0" 
                 Background="LightCyan" 
                 BorderBrush="LightGray" 
                 BorderThickness="1" 
@@ -82,9 +84,16 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        
+        </TabItem>
+            
+        <!--Task assistant tab-->
+            <TabItem Header="Tasks">
+                <local:TaskAssistant/>
+            </TabItem>
+        </TabControl>
+
         <!-- Input Row -->
-       <Grid Grid.Row="2" Margin="10">
+       <Grid Grid.Row="2" Margin="10" x:Name="InputRow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
