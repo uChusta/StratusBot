@@ -79,8 +79,8 @@ namespace StratusBot
             }
         }
 
-        //Retrieves the latest log entries
-        public List<LogEntry> GetLastLogs(int count)
+        //Retrieves the latest log entries and defaults to 10
+        public List<LogEntry> GetLastLogs(int count = 10)
         {
             try
             {
@@ -110,6 +110,94 @@ namespace StratusBot
         }
 
         //Clears all log entries
+        public int GetLogCount()
+        {
+            try
+            {
+                return GetLogsFromFile().Count;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error clearing logs: {ex.Message}");
+                return 0;
+            }
+        }
+        //formats recent logs to display in chat window
+        //has a show more indicator
+        public string GetFormattedRecentLogs(int displayCount = 5)
+        {
+            try
+            {
+                var allLogs = GetLogsFromFile();
+                int totalCount = allLogs.Count;
+
+                if (totalCount == 0)
+                {
+                    return "No activity logged yet.";
+                }
+
+                var recentLogs = allLogs.Skip(Math.Max(0, totalCount - displayCount)).ToList();
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(" **Here's a summary of recent actions:**");
+                sb.AppendLine();
+
+                for (int i = 0; i < recentLogs.Count; i++)
+                {
+                    int displayNumber = totalCount - displayCount + i + 1;
+                    LogEntry log = recentLogs[i];
+                    sb.AppendLine($" {displayNumber}. {log.Action}");
+                    sb.AppendLine($"    ({log.Timestamp})");
+                }
+
+                // Show "Show More" indicator if there are more logs
+                if (totalCount > displayCount)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($" **{totalCount - displayCount} more actions** — Type 'show more' to see the full history.");
+                }
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error formatting logs: {ex.Message}");
+                return "📋 Unable to retrieve activity log.";
+            }
+        }
+
+        //formats all logs for diplay for the show more feature
+        public string GetFormattedAllLogs()
+        {
+            try
+            {
+                var allLogs = GetLogsFromFile();
+
+                if (allLogs.Count == 0)
+                {
+                    return "📋 No activity logged yet.";
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("📋 **Complete Activity History:**");
+                sb.AppendLine();
+
+                for (int i = 0; i < allLogs.Count; i++)
+                {
+                    sb.AppendLine($" {i + 1}. {allLogs[i].Action}");
+                    sb.AppendLine($"    ({allLogs[i].Timestamp})");
+                }
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error formatting logs: {ex.Message}");
+                return "📋 Unable to retrieve activity log.";
+            }
+        }
+
+        //clears all logs
         public void ClearLogs()
         {
             try
@@ -122,6 +210,7 @@ namespace StratusBot
                 System.Diagnostics.Debug.WriteLine($"Error clearing logs: {ex.Message}");
             }
         }
+
 
         //get the log file path
         public string GetLogFilePath()
