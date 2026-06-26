@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows;
+
 
 namespace StratusBot
 {
@@ -28,6 +28,9 @@ namespace StratusBot
             // Initialize the chatbot
             chatBot = new ChatBot();
 
+            //Quiz start event
+            chatBot.QuizStartRequested += ChatBot_QuizStartRequested;
+
             // Set the user status indicator to online
             AppendUserMessage(chatBot.GetGreeting(), true);
 
@@ -35,7 +38,6 @@ namespace StratusBot
             //Sound sound = new Sound();
             //sound.PlaySound();
         }
-
         private void LoadAsciiArt()
         {
             // Load the ASCII art
@@ -45,10 +47,26 @@ namespace StratusBot
          █       █   █   █ █   █   █   █   █ █     █   █ █   █   █   
           ███    █   ████  █████   █   █   █  ███  ████  █   █   █   
              █   █   █  █  █   █   █   █   █     █ █   █ █   █   █   
-         ████    █   █   █ █   █   █    ███  ████  ████   ███    █ ";  
+         ████    █   █   █ █   █   █    ███  ████  ████   ███    █          ";  
             
         }
 
+        // Event handler for when quiz is requested - opens the QuizWindow
+        private void ChatBot_QuizStartRequested(object? sender, EventArgs e)
+        {
+            try
+            {
+                // Create and open QuizWindow
+                QuizWindow quizWindow = new QuizWindow();
+                quizWindow.Owner = this; // Set MainWindow as owner
+                quizWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                quizWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Quiz Window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         // Method to update the user status indicator in the UI
         private void  UpdateUserStatus(bool isOnline)
@@ -73,19 +91,19 @@ namespace StratusBot
         private void SendMessageInternal()
         {
             //read the input from the UI and call the chat bot to send the message and display the response in the UI
-            string userInput = InputTextBox.Text;
-            if (string.IsNullOrWhiteSpace(userInput))
+            string input = InputTextBox.Text;
+            if (string.IsNullOrWhiteSpace(input))
                 return; // Don't send empty messages
-            AppendUserMessage(userInput, false);
+            AppendUserMessage(input, false);
 
             //update the user status indicator
             UpdateUserStatus(true);
 
             //check if the user's input contains a specific keyword
-           bool isKeyword = userInput.Contains(chatBot._keywords.GetAllKeywords(), StringComparison.OrdinalIgnoreCase);
+           bool isKeyword = input.Contains(chatBot._keywords.GetAllKeywords(), StringComparison.OrdinalIgnoreCase);
 
             //send the message to the chatbot
-            string response = chatBot.ProcessInput(userInput);
+            string response = chatBot.ProcessInput(input);
             AppendUserMessage(response, true);
 
             InputTextBox.Clear();
@@ -149,6 +167,10 @@ namespace StratusBot
 
             // Clear the input box after sending the message
             InputTextBox.Clear();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            InputTextBox.Focus();
         }
 
     }

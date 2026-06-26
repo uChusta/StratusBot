@@ -196,5 +196,33 @@ namespace StratusBot
                 return options[optionIndex].ToString();
             }
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExitQuiz();
+        }
+
+        // Exits the quiz with confirmation dialog
+        private void ExitQuiz()
+        {
+            // Show confirmation dialog
+            MessageBoxResult result = MessageBox.Show(
+                $"Are you sure you want to exit the quiz?\n\nYour current score is: {_quizManager.GetCurrentScore()}/{_quizManager.GetTotalQuestions()}\n\nYour progress will not be saved.",
+                "Exit Quiz",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.No
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Log quiz exit
+                ActivityLog activityLog = new ActivityLog();
+                activityLog.LogAction("QUIZ", $"Quiz exited - Final score: {_quizManager.GetCurrentScore()}/{_quizManager.GetTotalQuestions()}");
+
+                // Close the window
+                this.Close();
+            }
+        }
     }
 }
