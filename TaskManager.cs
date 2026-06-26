@@ -10,18 +10,18 @@ namespace StratusBot
     public class TaskManager
     {
         private TaskStorageHelper _storage;
-        private Activitylog _activitylog;
+        private ActivityLog _activitylog;
 
         //initialise TaskStorageHelper
         public TaskManager()
         {
             _storage = new TaskStorageHelper();
-            _activitylog = new Activitylog();
+            _activitylog = new ActivityLog();
 
         }
 
 
-        public void AddTask(string title, string description, string reminder)
+        public string AddTask(string title, string description, string reminder)
         {
             try
             {
@@ -36,9 +36,9 @@ namespace StratusBot
             }
             catch (Exception ex)
             {
-                string errormessage = $"Failed to add task: {ex.Message}";
-                _activitylog.LogAction("ERROR", errormessage);
-                return $"{errormessage}";
+                string errorMessage = $"Failed to add task: {ex.Message}";
+                _activitylog.LogAction("ERROR", errorMessage);
+                return $"{errorMessage}";
             }
         }
         public List<Cybertask> GetAllTasks()
