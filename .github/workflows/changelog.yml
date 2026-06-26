@@ -1,0 +1,32 @@
+            - name: Auto-generate CHANGELOG
+  # You may pin to the exact commit or the version.
+  # uses: BobAnkh/auto-generate-changelog@e8e1af1493032e025901cfdeb9ea6e67e4ffe208
+  uses: BobAnkh/auto-generate-changelog@v1.3.2
+  with:
+    # The name of the repo: user/repo_name
+    REPO_NAME: # optional, default is 
+    # Github Access Token you want to use. Just pass GITHUB_TOKEN
+    ACCESS_TOKEN: 
+    # Path to the file you want to add contributors' list. You can use <branch>:<file> format to specify the branch
+    PATH: # optional, default is CHANGELOG.md
+    # The branch to update file specified in PATH
+    BRANCH: # optional, default is 
+    # Open a new pull request if set to a target branch name
+    PULL_REQUEST: # optional, default is 
+    # Commit message
+    COMMIT_MESSAGE: # optional, default is docs(changelog): update release notes
+    # The type of commits you want to add to CHANGELOG
+    TYPE: # optional, default is feat:Feature,fix:Fix
+    # The name and email of the committer. e.g. 'author <author@example.com>'
+    COMMITTER: # optional, default is 
+    # The scope under which unscoped commits can be found e.g. 'fix: some general fix'
+    DEFAULT_SCOPE: # optional, default is general
+    # Suppress the generation of release notes for un-scoped commits e.g. 'fix: some general fix'
+    SUPPRESS_UNSCOPED: # optional, default is false
+    # Whether to include unreleased commits in the changelog
+    UNRELEASED_COMMITS: # optional, default is false
+    # Regenerate n recent releases' changelog. All non-exist releases will be generated. -1 means regenerating all the releases and 0 means no old releases will be regenerated
+    REGENERATE_COUNT: # optional, default is 0
+    # Replace empty release info with some words
+    REPLACE_EMPTY_RELEASE_INFO: # optional, default is *No description*
+          
