@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
@@ -27,7 +28,7 @@ namespace StratusBot
     public class TaskStorageHelper
     {
         private const string FilePath = "tasks.json";
-        private List<Cybertask> LoadTasks()
+        public List<Cybertask> LoadTasks()
         {
             try
             {
@@ -52,7 +53,7 @@ namespace StratusBot
                 return new List<Cybertask>();
             }
         }
-        private void SaveTasks(List<Cybertask> tasks) 
+        public void SaveTasks(List<Cybertask> tasks) 
         {
             try
             {
@@ -65,7 +66,7 @@ namespace StratusBot
                 System.Diagnostics.Debug.WriteLine($"Error saving Task: {ex.Message}");
             }
         }
-        private void AddTask( string title, string description, string reminder)
+        public void AddTask( string title, string description, string reminder)
         {
             try
             {
@@ -95,7 +96,7 @@ namespace StratusBot
             }
 
         }
-        private void MarkAsComplete(int id)
+        public void MarkAsComplete(int id)
         {
             try
             {
@@ -123,7 +124,7 @@ namespace StratusBot
                 System.Diagnostics.Debug.WriteLine($"Error marking task complete: {ex.Message}");
             }
         }
-        private void DeleteTask(int id) 
+        public void DeleteTask(int id)
         {
             try
             {
@@ -138,10 +139,15 @@ namespace StratusBot
                 }
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error deleting task: {ex.Message}");
             }
         }
+            public List<Cybertask> GetAlltasks()
+            {
+                return LoadTasks();
+            }
+        
     }
 }
