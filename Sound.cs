@@ -13,7 +13,7 @@ using NAudio.Wave;
             // play the welcome sound
             try
             {
-                using var audio = new AudioFileReader("Welcome.wav") { Volume = 0.25f }; // 25% volume
+                using var audio = new AudioFileReader("Welcome.wav") { Volume = 0.50f }; // 50% volume
                 using var output = new WaveOutEvent();
                 output.Init(audio);
                 output.Play();

@@ -16,14 +16,17 @@ namespace StratusBot
     public partial class MainWindow : Window
     {
         private ChatBot chatBot;
+        private double _originalWidth;
+        private double _originalHeight;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            
-            // Load the ASCII art
-            LoadAsciiArt();
+
+            // Set the initial size of the window
+            _originalWidth = this.Width;
+            _originalHeight = this.Height;
             
             // Initialize the chatbot
             chatBot = new ChatBot();
@@ -38,29 +41,34 @@ namespace StratusBot
             Sound sound = new Sound();
             sound.PlaySound();
         }
-        private void LoadAsciiArt()
-        {
-            // Load the ASCII art
-
-            AsciiTextBlock.Text = @"
-          ████ █████ ████   ███  █████ █   █  ████ ████   ███  █████ 
-         █       █   █   █ █   █   █   █   █ █     █   █ █   █   █   
-          ███    █   ████  █████   █   █   █  ███  ████  █   █   █   
-             █   █   █  █  █   █   █   █   █     █ █   █ █   █   █   
-         ████    █   █   █ █   █   █    ███  ████  ████   ███    █          ";  
-            
-        }
 
         // Event handler for when quiz is requested - opens the QuizWindow
         private void ChatBot_QuizStartRequested(object? sender, EventArgs e)
         {
             try
             {
+                //resize the window
+                this.Width = 800;
+                this.Height = 600;
+
                 // Create and open QuizWindow
                 QuizWindow quizWindow = new QuizWindow();
                 quizWindow.Owner = this; // Set MainWindow as owner
                 quizWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                quizWindow.Show();
+
+                //handling window size when quiz is closed
+                quizWindow.Closed += (s, args) =>
+                {
+                    // Notify chatbot that quiz has ended
+                    chatBot.CloseQuiz();
+
+                    //restore the window size
+                    this.Width = _originalWidth;
+                    this.Height = _originalHeight;
+                };
+
+
+                quizWindow.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -126,8 +134,9 @@ namespace StratusBot
             if (e.Key == Key.Enter)
             {
                 SendMessage();
+                e.Handled = true;
             }
-            InputTextBox.Clear();
+          ;
         }
 
         private void  AppendUserMessage(string message, bool isBot)
@@ -165,8 +174,7 @@ namespace StratusBot
             // Call the SendMessage method when the send button is clicked
             SendMessage();
 
-            // Clear the input box after sending the message
-            InputTextBox.Clear();
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

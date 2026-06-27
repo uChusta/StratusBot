@@ -18,7 +18,7 @@ namespace StratusBot
     // Interaction logic for QuizWindow.xaml
     public partial class QuizWindow : Window
     {
-        private QuizManager _quizManager;
+        private readonly QuizManager _quizManager;
         private QuizQuestion _currentQuestion;
         private bool _answered = false;
         private RadioButton _selectedRadioButton;
@@ -61,7 +61,8 @@ namespace StratusBot
                     FontSize = 12,
                     Margin = new Thickness(0, 10, 0, 0),
                     Padding = new Thickness(5),
-                    GroupName = "QuizOptions"
+                    GroupName = "QuizOptions",
+                    Tag = optionIndex
                 };
 
                 // Store the index for answer mapping

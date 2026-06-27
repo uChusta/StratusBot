@@ -148,6 +148,10 @@ public class ChatBot
             _showingFullLog = false;
             return HandleShowLog();
         }
+        if (DetectIntent("ShowMore", inputLower))
+        {
+            return HandleShowMoreLogs();
+        }
 
         // ============= STEP 6: Check for Cybersecurity Topics Intent =============
         if (DetectIntent("Cybersecurity", inputLower))
@@ -204,7 +208,7 @@ public class ChatBot
                 _activityLog.LogAction("INTERACTION", "NLP recognised greeting: 'how are you'");
                 return (sentimentOpener + resp).Trim();
         }
-        if (inputLower.Contains("what can you do") || inputLower.Contains("what do you do") || inputLower.Contains("purpose"))
+        if (inputLower.Contains("what can you do") ||inputLower.Contains("what can you help me with") || inputLower.Contains("what can I ask")|| inputLower.Contains("what do you do") || inputLower.Contains("purpose"))
         {
             _activityLog.LogAction("INTERACTION", "NLP recognised query: 'what can you do'");
             return "I can provide cybersecurity tips, explain concepts like phishing or malware, and answer common security questions. Try asking 'what is phishing' or 'general tips'.";
@@ -366,6 +370,18 @@ public class ChatBot
             _quizActive = false;
             return "Quiz ended. What would you like to do next?";
         }
+    }
+    public string CloseQuiz()
+    {
+        // Reset any quiz-related state
+        // Example: Clear quiz session, update activity log, etc.
+        _quizActive = false;
+
+        ActivityLog activityLog = new ActivityLog();
+        activityLog.LogAction("QUIZ", "Quiz session closed from MainWindow");
+
+        // Add any other cleanup logic you need here
+        return "Quiz ended. What would you like to do next?";
     }
 
     // ============= TASK MANAGEMENT METHODS =============

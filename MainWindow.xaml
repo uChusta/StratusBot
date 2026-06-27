@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:StratusBot"
         mc:Ignorable="d"
         Title="StratusBot" Height="600" Width="800"
-        MinWidth="350" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="350" MinHeight="850"
         Background="LightSteelBlue">
     <Grid>
         <!-- Row 0: Header with bot name and ASCII art -->
@@ -25,22 +26,11 @@
         <StackPanel Grid.Row="0" 
                     Margin="10" 
                     HorizontalAlignment="Center">
-            <TextBlock Text="Stratus Shield" 
+            <TextBlock Text="Stratus Shield Cybersecurity Bot"
                        FontSize="24" 
                        FontWeight="Bold" 
                        Foreground="DarkBlue" 
                        HorizontalAlignment="Center"/>
-
-            <Viewbox Stretch="Uniform" 
-                     HorizontalAlignment="Left">
-                <TextBlock x:Name="AsciiTextBlock" 
-                           FontFamily="Consolas" 
-                           FontSize="14" 
-                           xml:space="preserve"
-                           TextAlignment="Center"
-                           HorizontalAlignment="Left"
-                           TextWrapping="NoWrap"/>
-            </Viewbox>
         </StackPanel>
 
         <!-- User Display -->

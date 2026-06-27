@@ -7,115 +7,118 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800"
              MinWidth="350" MinHeight="500"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
              Background="LightSteelBlue">
-  
+    
         <!--rounded textbox-->
-    <UserControl.Resources>
-        <Style x:Key="RoundedTextBox" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#CCC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="Bd"
+        <UserControl.Resources>
+            <Style x:Key="RoundedTextBox" TargetType="TextBox">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#CCC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border x:Name="Bd"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="8">
-                            <ScrollViewer x:Name="PART_ContentHost"
+                                <ScrollViewer x:Name="PART_ContentHost"
                                           Margin="0"
                                           VerticalScrollBarVisibility="Auto"
                                           HorizontalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#999"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#2D89EF"/>
-                                <Setter TargetName="Bd" Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect Color="#2D89EF" BlurRadius="8" ShadowDepth="0" Opacity="0.15"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bd" Property="BorderBrush" Value="#999"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter TargetName="Bd" Property="BorderBrush" Value="#2D89EF"/>
+                                    <Setter TargetName="Bd" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="#2D89EF" BlurRadius="8" ShadowDepth="0" Opacity="0.15"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </UserControl.Resources>
+    
+    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Border BorderBrush="#CCCCCC" BorderThickness="1,0,0,0" Padding="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Title Header -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Input Form -->
+                    <RowDefinition Height="*"/>
+                    <!-- Task List View -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Action Buttons -->
+                </Grid.RowDefinitions>
 
-    <Border BorderBrush="#CCCCCC" BorderThickness="1,0,0,0" Padding="15">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- Title Header -->
-                <RowDefinition Height="Auto"/>
-                <!-- Input Form -->
-                <RowDefinition Height="*"/>
-                <!-- Task List View -->
-                <RowDefinition Height="Auto"/>
-                <!-- Action Buttons -->
-            </Grid.RowDefinitions>
+                <!-- 1. Header -->
+                <TextBlock Grid.Row="0" Text="Task Assistant" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" Foreground="#333333"/>
 
-            <!-- 1. Header -->
-            <TextBlock Grid.Row="0" Text="Task Assistant" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" Foreground="#333333"/>
+                <!-- 2. Input Form -->
+                <StackPanel Grid.Row="1" Margin="0,0,0,15">
 
-            <!-- 2. Input Form -->
-            <StackPanel Grid.Row="1" Margin="0,0,0,15">
+                    <TextBlock Text="Task Title:" Margin="0,0,0,3" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TxtTitle" Margin="0,0,0,10" Padding="5"/>
 
-                <TextBlock Text="Task Title:" Margin="0,0,0,3" FontWeight="SemiBold"/>
-                <TextBox x:Name="TxtTitle" Margin="0,0,0,10" Padding="5"/>
+                    <TextBlock Text="Description:" Margin="0,0,0,3" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TxtDescription" Height="50" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Padding="5"/>
 
-                <TextBlock Text="Description:" Margin="0,0,0,3" FontWeight="SemiBold"/>
-                <TextBox x:Name="TxtDescription" Height="50" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10" Padding="5"/>
+                    <TextBlock Text="Reminder (e.g., 'Remind me in 7 days'):" Margin="0,0,0,3" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TxtReminder" Margin="0,0,0,12" Padding="5"/>
 
-                <TextBlock Text="Reminder (e.g., 'Remind me in 7 days'):" Margin="0,0,0,3" FontWeight="SemiBold"/>
-                <TextBox x:Name="TxtReminder" Margin="0,0,0,12" Padding="5"/>
+                    <Button x:Name="BtnAddTask" Content="Add Task" Background="#FF2D89EF" Foreground="White" Padding="8" Click="BtnAddTask_Click"/>
+                </StackPanel>
 
-                <Button x:Name="BtnAddTask" Content="Add Task" Background="#FF2D89EF" Foreground="White" Padding="8" Click="BtnAddTask_Click"/>
-            </StackPanel>
-
-            <!-- 3. ListBox showing tasks -->
-            <ListBox x:Name="LstTasks" Grid.Row="2" Margin="0,0,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5" Width="300">
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                                <Setter Property="Foreground" Value="Gray"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,2,0,2" Foreground="#555555"/>
-                            <StackPanel Orientation="Horizontal">
-                                <!-- <TextBlock Text="⏰ " /> -->
-                                <TextBlock Text="{Binding Reminder}" FontStyle="Italic" Foreground="DarkRed"/>
+                <!-- 3. ListBox showing tasks -->
+                <ListBox x:Name="LstTasks" Grid.Row="2" Margin="0,0,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5" Width="300">
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                    <Setter Property="Foreground" Value="Gray"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,2,0,2" Foreground="#555555"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- <TextBlock Text="⏰ " /> -->
+                                    <TextBlock Text="{Binding Reminder}" FontStyle="Italic" Foreground="DarkRed"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-            <!-- 4. Action Buttons -->
-            <UniformGrid Grid.Row="3" Columns="2" Rows="1">
-                <Button x:Name="BtnCompleteTask" Content="Mark Complete" Margin="0,0,5,0" Padding="8" Background="#28A745" Foreground="White" Click="BtnCompleteTask_Click"/>
-                <Button x:Name="BtnDeleteTask" Content="Delete Task" Margin="5,0,0,0" Padding="8" Background="#DC3545" Foreground="White" Click="BtnDeleteTask_Click"/>
-            </UniformGrid>
-        </Grid>
-    </Border>
-  
+                <!-- 4. Action Buttons -->
+                <UniformGrid Grid.Row="3" Columns="2" Rows="1">
+                    <Button x:Name="BtnCompleteTask" Content="Mark Complete" Margin="0,0,5,0" Padding="8" Background="#28A745" Foreground="White" Click="BtnCompleteTask_Click"/>
+                    <Button x:Name="BtnDeleteTask" Content="Delete Task" Margin="5,0,0,0" Padding="8" Background="#DC3545" Foreground="White" Click="BtnDeleteTask_Click"/>
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </ScrollViewer>
 </UserControl>

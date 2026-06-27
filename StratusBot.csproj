@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ascii-art-text %2817%29.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Sound.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -21,6 +25,10 @@
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="ascii-art-text (17).png" />
   </ItemGroup>
 
 </Project>
